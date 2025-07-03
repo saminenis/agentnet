@@ -7,7 +7,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^4.0.0"
+    "astro": "^4.0.0",
+    "@astrojs/mdx": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/content": "^3.0.0"
   },
   "type": "module"
 }
