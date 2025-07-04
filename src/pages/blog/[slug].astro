@@ -1,0 +1,25 @@
+---
+import { getEntryBySlug } from 'astro:content';
+import { AstroError } from 'astro/errors';
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+
+if (!post) {
+  throw new AstroError(`Post not found for slug: ${slug}`);
+}
+const { Content, data } = await post.render();
+---
+
+<html lang="en">
+  <head>
+    <title>{data.title}</title>
+  </head>
+  <body>
+    <h1>{data.title}</h1>
+    <p><em>{data.description}</em></p>
+    <article>
+      <Content />
+    </article>
+  </body>
+</html>
+
