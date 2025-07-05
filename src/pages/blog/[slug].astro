@@ -18,3 +18,18 @@ if (!post) {
 const { Content, data } = await post.render();
 ---
 
+<html lang="en">
+  <head>
+    <title>{data.title}</title>
+  </head>
+  <body>
+    <main>
+      <h1>{data.title}</h1>
+      <p><em>{data.description}</em></p>
+      <article>
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>
+
