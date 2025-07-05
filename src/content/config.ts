@@ -5,11 +5,11 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.string(),
-    author: z.string(),
-    tags: z.array(z.string())
-  })
+    author: z.string().optional(),         // ✅ Now optional
+    tags: z.array(z.string()).optional(),  // ✅ Now optional
+  }),
 });
 
 export const collections = {
-  blog
+  blog,
 };
