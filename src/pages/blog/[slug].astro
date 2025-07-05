@@ -9,16 +9,23 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-console.log("Building page for slug:", slug);
+console.log("🔍 Building page for slug:", slug);
 
 const post = await getEntryBySlug('blog', slug);
 
-// ✅ CRITICAL: guard before accessing anything!
 if (!post) {
+  console.error("❌ Post not found for slug:", slug);
   throw new Error(`Post not found for slug: ${slug}`);
 }
 
-const { Content, data } = await post.render();
+const rendered = await post.render();
+
+if (!rendered || !rendered.Content || !rendered.data) {
+  console.error("❌ Post.render() returned invalid content for slug:", slug);
+  throw new Error("Post content could not be rendered.");
+}
+
+const { Content, data } = rendered;
 ---
 
 <html lang="en">
@@ -35,4 +42,3 @@ const { Content, data } = await post.render();
     </main>
   </body>
 </html>
-
